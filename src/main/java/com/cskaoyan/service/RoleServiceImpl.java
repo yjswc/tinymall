@@ -1,16 +1,16 @@
 package com.cskaoyan.service;
 
-import com.cskaoyan.bean.system.Role;
-import com.cskaoyan.bean.system.RoleExample;
-import com.cskaoyan.bean.system.RoleOption;
+import com.cskaoyan.bean.Permission;
+import com.cskaoyan.bean.system.*;
+import com.cskaoyan.mapper.PermissionMapper;
+import com.cskaoyan.mapper.PermissionRoleMapper;
 import com.cskaoyan.mapper.RoleMapper;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Author: Li Qing
@@ -21,6 +21,10 @@ import java.util.List;
 public class RoleServiceImpl implements RoleService {
     @Autowired
     RoleMapper roleMapper;
+    @Autowired
+    PermissionRoleMapper permissionRoleMapper;
+    @Autowired
+    PermissionMapper permissionMapper;
 
     @Override
     public List<Role> queryRoleList(String name, Integer page, Integer limit, String sort, String order) {
@@ -46,6 +50,32 @@ public class RoleServiceImpl implements RoleService {
         return roleMapper.updateByPrimaryKeySelective(role);
     }
 
+    /**
+     * 查询特定roleId的details
+     *
+     * @param roleId
+     * @return
+     */
+    @Override
+    public Map<String, Object> getPermissions(Integer roleId) {
+        Map<String, Object> map = new HashMap<>();
+        List<String> assignedPermissions = getAllPermissionsByRoleId(roleId);
+        List<Permission> systemPermissions = permissionMapper.selectPermissionListByPid(0);
+        map.put("systemPermissions", systemPermissions);
+        map.put("assignedPermissions", assignedPermissions);
+        return map;
+    }
+
+    @Override
+    public Integer updatePermissionsByRoleId(UpdatePermissionBean permissionBean) {
+        PermissionRoleExample example = new PermissionRoleExample();
+        Integer roleId = permissionBean.getRoleId();
+        example.createCriteria().andRoleIdEqualTo(roleId);
+        permissionRoleMapper.deleteByExample(example);
+        List<String> permissions = permissionBean.getPermissions();
+        return permissionRoleMapper.insertPermissionsByRoleId(roleId, permissions);
+    }
+
     @Override
     public Integer createRole(Role role) {
         Date date = new Date();
@@ -60,6 +90,17 @@ public class RoleServiceImpl implements RoleService {
         role.setUpdateTime(date);
         role.setDeleted(true);
         return roleMapper.updateByPrimaryKeySelective(role);
+    }
+
+    /**
+     * 获取所有权限列表
+     *
+     * @param roleId
+     * @return
+     */
+    private List<String> getAllPermissionsByRoleId(Integer roleId) {
+        if (roleId == 1) return permissionMapper.selectPermissionList();
+        return permissionRoleMapper.selectPermissionList(roleId);
     }
 }
 

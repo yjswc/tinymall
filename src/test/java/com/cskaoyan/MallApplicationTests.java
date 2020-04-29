@@ -1,15 +1,18 @@
 package com.cskaoyan;
 
-import com.cskaoyan.bean.goods.Goods;
+import com.cskaoyan.bean.Permission;
+
 import com.cskaoyan.bean.mall.Category;
-import com.cskaoyan.bean.mall.Order;
+
 import com.cskaoyan.bean.user.Collect;
 import com.cskaoyan.bean.user.SearchHistory;
 import com.cskaoyan.bean.user.User;
 
+
 import com.cskaoyan.mapper.CategoryMapper;
 import com.cskaoyan.mapper.GoodsMapper;
 import com.cskaoyan.mapper.OrderMapper;
+import com.cskaoyan.mapper.PermissionMapper;
 import com.cskaoyan.service.GoodsService;
 import com.cskaoyan.service.MallService;
 import com.cskaoyan.service.UserService;
@@ -97,11 +100,14 @@ class MallApplicationTests {
     GoodsService goodsService;
     @Autowired
     GoodsMapper goodsMapper;
+    @Autowired
+    PermissionMapper permissionMapper;
 
     @Test
     public void testgoods() throws JsonProcessingException {
-        Goods goods = new Goods();
-        System.out.println(goods.getAddTime());
+
+        List<Permission> systemPermissions = permissionMapper.selectPermissionListByPid(0);
+        System.out.println(systemPermissions);
     }
 
 }

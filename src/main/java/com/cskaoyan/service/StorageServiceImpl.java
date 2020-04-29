@@ -1,15 +1,19 @@
 package com.cskaoyan.service;
 
 import com.cskaoyan.bean.system.Storage;
+import com.cskaoyan.bean.system.StorageExample;
 import com.cskaoyan.mapper.StorageMapper;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -51,5 +55,35 @@ public class StorageServiceImpl implements StorageService {
         storageMapper.insertSelective(storage);
 
         return storage.getUrl();
+    }
+
+
+
+    @Override
+    public List<Storage> queryStorageList(String key,String name, Integer page, Integer limit, String sort, String order) {
+        PageHelper.startPage(page, limit);
+        PageHelper.orderBy(sort + " " + order);
+       StorageExample example = new StorageExample();
+       StorageExample.Criteria criteria = example.createCriteria();
+        if (!StringUtils.isEmpty(name)) criteria.andNameLike("%" + name + "%");
+        if (!StringUtils.isEmpty(key)) criteria.andKeyLike("%" + key + "%");
+        criteria.andDeletedEqualTo(false);
+        return storageMapper.selectByExample(example);
+    }
+
+    @Override
+    public Integer updateStorage(Storage storage) {
+        Date date = new Date();
+        storage.setUpdateTime(date);
+        return storageMapper.updateByPrimaryKeySelective(storage);
+    }
+    
+
+    @Override
+    public Integer deleteStorage(Storage storage) {
+        Date date = new Date();
+        storage.setUpdateTime(date);
+        storage.setDeleted(true);
+        return storageMapper.updateByPrimaryKeySelective(storage);
     }
 }

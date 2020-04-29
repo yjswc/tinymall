@@ -2,9 +2,10 @@ package com.cskaoyan.controller;
 
 import com.cskaoyan.bean.BaseRespVo;
 
-import com.cskaoyan.service.MallService;
 
+import com.cskaoyan.bean.system.Storage;
 import com.cskaoyan.service.StorageService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,6 +14,7 @@ import java.io.IOException;
 
 import java.util.HashMap;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,6 +28,17 @@ public class StorageController {
     @Autowired
     StorageService storageService;
 
+    @GetMapping("list")
+    public BaseRespVo getStorageList(String key, String name, Integer page, Integer limit, String sort, String order) {
+        List<Storage> list = storageService.queryStorageList(key, name, page, limit, sort, order);
+        Map<String, Object> result = new HashMap<>();
+        long total = PageInfo.of(list).getTotal();
+        result.put("total", total);
+        result.put("items", list);
+        return new BaseRespVo<>(0, result, "成功");
+    }
+
+
     @PostMapping("create")
     public BaseRespVo createStorage(MultipartFile file) {
         String url = null;
@@ -37,6 +50,18 @@ public class StorageController {
         Map<String, Object> result = new HashMap<>();
         result.put("url", url);
         return new BaseRespVo(0, result, "成功");
+    }
+
+    @PostMapping("update")
+    public BaseRespVo updateStorage(@RequestBody Storage storage) {
+        storageService.updateStorage(storage);
+        return new BaseRespVo<>(0, null, "成功");
+    }
+
+    @PostMapping("delete")
+    public BaseRespVo deleteStorage(@RequestBody Storage storage) {
+        storageService.deleteStorage(storage);
+        return new BaseRespVo<>(0, null, "成功");
     }
 
 
