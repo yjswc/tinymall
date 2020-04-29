@@ -1,9 +1,8 @@
 package com.cskaoyan.mapper;
 
-
-import com.cskaoyan.bean.goods.SimpleBrand;
 import com.cskaoyan.bean.mall.Brand;
 import com.cskaoyan.bean.mall.BrandExample;
+import com.cskaoyan.bean.goods.SimpleBrand;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -18,10 +17,8 @@ public interface BrandMapper {
     int insert(Brand record);
 
     int insertSelective(Brand record);
-
-    List<Brand> selectByExample(BrandExample example);
-
     List<SimpleBrand> selectSimpleInfoList();
+    List<Brand> selectByExample(BrandExample example);
 
     Brand selectByPrimaryKey(Integer id);
 

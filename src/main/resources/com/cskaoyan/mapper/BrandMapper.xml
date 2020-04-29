@@ -12,19 +12,10 @@
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
         <result column="deleted" jdbcType="BIT" property="deleted"/>
     </resultMap>
-    <resultMap id="myResultMap" type="com.cskaoyan.bean.mall.Brand">
-        <id column="id" jdbcType="INTEGER" property="id"/>
-        <result column="name" jdbcType="VARCHAR" property="name"/>
-        <result column="desc" jdbcType="VARCHAR" property="desc"/>
-        <result column="pic_url" jdbcType="VARCHAR" property="picUrl"/>
-        <result column="floor_price" jdbcType="DECIMAL" property="floorPrice"/>
-    </resultMap>
-    <!--简单品牌信息，用于商品模块管理-->
     <resultMap id="SimpleResultMap" type="com.cskaoyan.bean.goods.SimpleBrand">
         <id column="id" jdbcType="INTEGER" property="value"/>
         <result column="name" jdbcType="VARCHAR" property="label"/>
     </resultMap>
-
     <sql id="Example_Where_Clause">
         <where>
             <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -86,9 +77,16 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-        id, name, `desc`, pic_url, sort_order, floor_price, add_time, update_time, deleted
+        id, name,
+        `desc`, pic_url, sort_order, floor_price, add_time, update_time, deleted
     </sql>
-    <select id="selectByExample" parameterType="com.cskaoyan.bean.mall.BrandExample" resultMap="myResultMap">
+    <select id="selectSimpleInfoList" resultMap="SimpleResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from cskaoyan_mall_brand
+        where deleted = 0
+    </select>
+    <select id="selectByExample" parameterType="com.cskaoyan.bean.mall.BrandExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
             distinct
@@ -103,14 +101,7 @@
             order by ${orderByClause}
         </if>
     </select>
-
-    <select id="selectSimpleInfoList" resultMap="SimpleResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from cskaoyan_mall_brand
-        where deleted = 0
-    </select>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="myResultMap">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from cskaoyan_mall_brand
@@ -127,7 +118,7 @@
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.cskaoyan.bean.mall.Brand" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.cskaoyan.bean.mall.Brand">
         insert into cskaoyan_mall_brand (id, name, `desc`,
                                          pic_url, sort_order, floor_price,
                                          add_time, update_time, deleted)
@@ -135,7 +126,7 @@
                 #{picUrl,jdbcType=VARCHAR}, #{sortOrder,jdbcType=TINYINT}, #{floorPrice,jdbcType=DECIMAL},
                 #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT})
     </insert>
-    <insert id="insertSelective" parameterType="com.cskaoyan.bean.mall.Brand" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.cskaoyan.bean.mall.Brand">
         insert into cskaoyan_mall_brand
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -273,7 +264,7 @@
             <if test="addTime != null">
                 add_time = #{addTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="update_time!=null">
+            <if test="updateTime != null">
                 update_time = #{updateTime,jdbcType=TIMESTAMP},
             </if>
             <if test="deleted != null">

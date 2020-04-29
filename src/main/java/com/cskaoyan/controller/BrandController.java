@@ -53,7 +53,7 @@ public class BrandController {
     @PostMapping("delete")
     public BaseRespVo deleteBrand(@RequestBody Brand brand) {
         System.out.println(brand);
-        mallService.deleteBrand(brand.getId());
+        mallService.deleteBrand(brand);
         BaseRespVo<Object> respVo = new BaseRespVo<>();
         respVo.setErrno(0);
         respVo.setErrmsg("成功");

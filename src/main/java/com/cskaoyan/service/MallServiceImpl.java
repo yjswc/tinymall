@@ -76,11 +76,9 @@ public class MallServiceImpl implements MallService {
     }
 
     @Override
-    public Integer deleteBrand(Integer id) {
-        BrandExample example = new BrandExample();
-        Brand brand = new Brand();
-        brand.setId(id);
+    public Integer deleteBrand(Brand brand) {
         brand.setUpdateTime(new Date());
+        System.out.println(brand.getUpdateTime());
         brand.setDeleted(true);
         return brandMapper.updateByPrimaryKeySelective(brand);
     }

@@ -23,7 +23,7 @@ public interface MallService {
 
     Integer createBrand(Brand brand);
 
-    Integer deleteBrand(Integer id);
+    Integer deleteBrand(Brand brand);
 
     List<Category> queryCategories();
 
@@ -52,6 +52,7 @@ public interface MallService {
     Integer createKeyword(Keyword keyword);
 
     Integer updateKeyword(Keyword keyword);
+
     Integer deleteKeyword(Keyword keyword);
 
     Integer deleteOrder(Integer orderId);
