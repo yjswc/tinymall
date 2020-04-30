@@ -22,4 +22,6 @@ public interface UserService {
     List<SearchHistory> queryHistory(Integer userId, String keyword, Integer page, Integer limit, String sort, String order);
 
     List<Feedback> queryFeedBacks(Integer id, String username, Integer page, Integer limit, String sort, String order);
+
+    Long queryTotalUsers();
 }

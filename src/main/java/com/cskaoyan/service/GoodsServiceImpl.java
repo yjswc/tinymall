@@ -306,5 +306,29 @@ public class GoodsServiceImpl implements GoodsService {
         example.createCriteria().andGoodsIdEqualTo(goodsId);
         return specificationMapper.deleteByExample(example);
     }
+
+    /**
+     * 查询所有商品数目
+     *
+     * @return
+     */
+    @Override
+    public Long queryTotalGoods() {
+        GoodsExample example = new GoodsExample();
+        example.createCriteria().andDeletedEqualTo(false);
+        return goodsMapper.countByExample(example);
+    }
+
+    /**
+     * 查询所有货品数目
+     *
+     * @return
+     */
+    @Override
+    public Long queryTotalProducts() {
+        ProductExample example = new ProductExample();
+        example.createCriteria().andDeletedEqualTo(false);
+        return productMapper.countByExample(example);
+    }
 }
 

@@ -24,4 +24,7 @@ public interface GoodsService {
 
     Integer deleteGoods(Goods goods);
 
+    Long queryTotalGoods();
+
+    Long queryTotalProducts();
 }

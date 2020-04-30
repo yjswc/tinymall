@@ -1,5 +1,6 @@
 package com.cskaoyan.service;
 
+import com.cskaoyan.bean.goods.GoodsExample;
 import com.cskaoyan.bean.mall.OrderGoods;
 import com.cskaoyan.bean.mall.OrderGoodsExample;
 import com.cskaoyan.bean.mall.*;
@@ -145,6 +146,18 @@ public class MallServiceImpl implements MallService {
         map.put("orderGoods", orderGoods);
         map.put("user", user);
         return map;
+    }
+
+    /**
+     * 查询所有订单数目
+     *
+     * @return
+     */
+    @Override
+    public Long queryTotalOrders() {
+        OrderExample example = new OrderExample();
+        example.createCriteria().andDeletedEqualTo(false);
+        return orderMapper.countByExample(example);
     }
 
     /**

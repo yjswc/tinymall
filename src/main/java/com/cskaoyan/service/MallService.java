@@ -55,6 +55,8 @@ public interface MallService {
 
     Integer deleteKeyword(Keyword keyword);
 
+    Long queryTotalOrders();
+
     Integer deleteOrder(Integer orderId);
 
 }
