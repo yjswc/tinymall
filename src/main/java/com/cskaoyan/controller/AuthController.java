@@ -5,6 +5,7 @@ import com.cskaoyan.bean.system.Admin;
 import com.cskaoyan.bean.user.LoginToken;
 import com.cskaoyan.service.AdminService;
 import com.cskaoyan.service.RoleService;
+import com.cskaoyan.utils.MD5Utils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -34,7 +35,7 @@ public class AuthController {
     @ResponseBody
     public BaseRespVo login(@RequestBody LoginToken token) {
         Subject subject = SecurityUtils.getSubject();
-        subject.login(new UsernamePasswordToken(token.getUsername(), token.getPassword()));
+        subject.login(new UsernamePasswordToken(token.getUsername(), MD5Utils.getMd5(token.getPassword())));
         Serializable id = subject.getSession().getId();
         return new BaseRespVo(0, id, "成功");
     }

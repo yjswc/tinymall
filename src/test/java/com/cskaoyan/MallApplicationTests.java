@@ -17,6 +17,7 @@ import com.cskaoyan.mapper.PermissionMapper;
 import com.cskaoyan.service.GoodsService;
 import com.cskaoyan.service.MallService;
 import com.cskaoyan.service.UserService;
+import com.cskaoyan.utils.MD5Utils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -115,6 +116,14 @@ class MallApplicationTests {
         ObjectMapper mapper = new ObjectMapper();
         List<OrderStat> list = orderMapper.selectOrderStat();
         System.out.println(mapper.writeValueAsString(list));
+
+    }
+
+    @Test
+    public void testMD5() throws JsonProcessingException {
+        String username = "promotion123";
+        String md5 = MD5Utils.getMd5(username, username);
+        System.out.println(md5);
 
     }
 
