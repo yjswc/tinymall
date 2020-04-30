@@ -172,6 +172,14 @@
         from cskaoyan_mall_permission
         where role_id = #{roleId}
     </select>
+    <select id="selectPermissions" resultType="java.lang.String">
+        select distinct permission
+        from cskaoyan_mall_permission
+        where deleted = 0 and role_id in
+        <foreach collection="roleIds" item="roleId" separator="," open="(" close=")">
+            #{roleId}
+        </foreach>
+    </select>
     <update id="updateByExampleSelective" parameterType="map">
         update cskaoyan_mall_permission
         <set>

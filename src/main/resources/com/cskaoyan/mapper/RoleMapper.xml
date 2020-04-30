@@ -178,6 +178,12 @@
         from cskaoyan_mall_role
         where deleted = 0
     </select>
+    <select id="selectRoleNameSetByRoleIds" resultType="java.lang.String">
+        select distinct name from cskaoyan_mall_role where deleted = 0 and id in
+        <foreach collection="roleIds" item="roleId" open="(" close=")" separator=",">
+            #{roleId}
+        </foreach>
+    </select>
     <update id="updateByExampleSelective" parameterType="map">
         update cskaoyan_mall_role
         <set>

@@ -4,9 +4,9 @@ import com.cskaoyan.bean.system.Role;
 import com.cskaoyan.bean.system.RoleOption;
 import com.cskaoyan.bean.system.UpdatePermissionBean;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @Author: Li Qing
@@ -28,4 +28,10 @@ public interface RoleService {
     Map<String, Object> getPermissions(Integer roleId);
 
     Integer updatePermissionsByRoleId(UpdatePermissionBean permissionBean);
+
+    Set<String> queryRoleNameSetByRoleIds(Set<Integer> roleIds);
+
+    Set<String> queryPermissionsByRoleIds(Set<Integer> roleIds);
+
+    Set<String> queryAPIByRoleIds(Set<Integer> roleIds);
 }

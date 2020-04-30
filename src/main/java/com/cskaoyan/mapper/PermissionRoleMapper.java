@@ -4,8 +4,8 @@ import com.cskaoyan.bean.system.PermissionRole;
 import com.cskaoyan.bean.system.PermissionRoleExample;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public interface PermissionRoleMapper {
     long countByExample(PermissionRoleExample example);
@@ -33,4 +33,6 @@ public interface PermissionRoleMapper {
     List<String> selectPermissionList(Integer roleId);
 
     Integer insertPermissionsByRoleId(@Param("roleId") Integer roleId, @Param("permissions") List permissions);
+
+    Set<String> selectPermissions(@Param("roleIds") Set<Integer> roleIds);
 }

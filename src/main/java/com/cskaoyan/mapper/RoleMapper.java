@@ -6,6 +6,7 @@ import com.cskaoyan.bean.system.RoleOption;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Set;
 
 public interface RoleMapper {
     long countByExample(RoleExample example);
@@ -30,4 +31,6 @@ public interface RoleMapper {
     int updateByPrimaryKeySelective(Role record);
 
     int updateByPrimaryKey(Role record);
+
+    Set<String> selectRoleNameSetByRoleIds(@Param("roleIds") Set<Integer> roleIds);
 }

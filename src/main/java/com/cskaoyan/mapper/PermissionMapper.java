@@ -5,7 +5,9 @@ import com.cskaoyan.bean.system.Permission;
 import com.cskaoyan.bean.system.PermissionExample;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public interface PermissionMapper {
     long countByExample(PermissionExample example);
@@ -33,4 +35,6 @@ public interface PermissionMapper {
     int updateByPrimaryKey(Permission record);
 
     List<String> selectPermissionList();
+
+    HashSet<String> selectPermissionAPI(@Param("permissions") Set<String> permissions);
 }

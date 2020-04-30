@@ -77,6 +77,36 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    public Set<String> queryRoleNameSetByRoleIds(Set<Integer> roleIds) {
+
+        return roleMapper.selectRoleNameSetByRoleIds(roleIds);
+    }
+
+    @Override
+    public Set<String> queryPermissionsByRoleIds(Set<Integer> roleIds) {
+        return permissionRoleMapper.selectPermissions(roleIds);
+    }
+
+    /**
+     * 查询permissions对应的api
+     *
+     * @param roleIds
+     * @return
+     */
+    @Override
+    public Set<String> queryAPIByRoleIds(Set<Integer> roleIds) {
+        HashSet<String> perms = new HashSet<>();
+        if (roleIds.contains(1)) {
+            perms.add("*");
+        } else {
+            Set<String> permissions = queryPermissionsByRoleIds(roleIds);
+            perms = permissionMapper.selectPermissionAPI(permissions);
+        }
+        return perms;
+
+    }
+
+    @Override
     public Integer createRole(Role role) {
         Date date = new Date();
         role.setAddTime(date);

@@ -17,4 +17,6 @@ public interface AdminService {
     Integer createAdmin(Admin admin);
 
     Integer deleteAdmin(Admin admin);
+
+    List<Admin> queryAdminList(String username);
 }

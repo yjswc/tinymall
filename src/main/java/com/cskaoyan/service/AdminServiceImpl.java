@@ -55,4 +55,12 @@ public class AdminServiceImpl implements AdminService {
         admin.setDeleted(true);
         return adminMapper.updateByPrimaryKeySelective(admin);
     }
+
+    @Override
+    public List<Admin> queryAdminList(String username) {
+        AdminExample example = new AdminExample();
+        example.createCriteria().andDeletedEqualTo(false).andUsernameEqualTo(username);
+
+        return adminMapper.selectByExample(example);
+    }
 }
