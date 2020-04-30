@@ -1,6 +1,7 @@
 package com.cskaoyan;
 
-import com.cskaoyan.bean.Permission;
+import com.cskaoyan.bean.stat.OrderStat;
+import com.cskaoyan.bean.system.Permission;
 
 import com.cskaoyan.bean.mall.Category;
 
@@ -27,7 +28,6 @@ import org.springframework.util.ResourceUtils;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -108,6 +108,14 @@ class MallApplicationTests {
 
         List<Permission> systemPermissions = permissionMapper.selectPermissionListByPid(0);
         System.out.println(systemPermissions);
+    }
+
+    @Test
+    public void testOrderstat() throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        List<OrderStat> list = orderMapper.selectOrderStat();
+        System.out.println(mapper.writeValueAsString(list));
+
     }
 
 }

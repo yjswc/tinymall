@@ -1,18 +1,14 @@
 package com.cskaoyan.controller;
 
 import com.cskaoyan.bean.BaseRespVo;
-import com.cskaoyan.bean.Permission;
-import com.cskaoyan.bean.promotion.Advertisement;
 import com.cskaoyan.bean.system.Role;
 import com.cskaoyan.bean.system.RoleOption;
 import com.cskaoyan.bean.system.UpdatePermissionBean;
-import com.cskaoyan.mapper.PermissionMapper;
 import com.cskaoyan.service.RoleService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

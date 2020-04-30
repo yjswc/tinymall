@@ -243,6 +243,11 @@
         from cskaoyan_mall_user
         where id = #{id}
     </select>
+    <select id="selectUserStat" resultType="com.cskaoyan.bean.stat.UserStat">
+        select count(id) as users, add_time as day
+        from cskaoyan_mall_user
+        group by add_time
+    </select>
     <update id="updateByExampleSelective" parameterType="map">
         update cskaoyan_mall_user
         <set>

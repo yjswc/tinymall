@@ -1,5 +1,6 @@
 package com.cskaoyan.mapper;
 
+import com.cskaoyan.bean.stat.UserStat;
 import com.cskaoyan.bean.user.User;
 import com.cskaoyan.bean.user.UserExample;
 import org.apache.ibatis.annotations.Param;
@@ -31,4 +32,5 @@ public interface UserMapper {
 
     User selectSimpleInfo(Integer id);
 
+    List<UserStat> selectUserStat();
 }

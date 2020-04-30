@@ -1,6 +1,6 @@
 package com.cskaoyan.service;
 
-import com.cskaoyan.bean.Permission;
+import com.cskaoyan.bean.system.Permission;
 import com.cskaoyan.bean.system.*;
 import com.cskaoyan.mapper.PermissionMapper;
 import com.cskaoyan.mapper.PermissionRoleMapper;

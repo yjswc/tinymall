@@ -2,6 +2,7 @@ package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.mall.OrderGoods;
 import com.cskaoyan.bean.mall.OrderGoodsExample;
+import com.cskaoyan.bean.stat.GoodsStat;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -28,4 +29,7 @@ public interface OrderGoodsMapper {
     int updateByPrimaryKeySelective(OrderGoods record);
 
     int updateByPrimaryKey(OrderGoods record);
+
+    //<!--无效状态102，103，203不列入统计，删除订单不列入统计-->
+    List<GoodsStat> selectOrderGoodsStat();
 }
