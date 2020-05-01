@@ -9,7 +9,6 @@ spring:
 
 mybatis:
   type-handlers-package: com.cskaoyan.typeHandler
-
 pagehelper:
   helper-dialect: mysql
 logging:

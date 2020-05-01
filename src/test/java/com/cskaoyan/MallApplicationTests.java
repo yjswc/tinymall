@@ -1,25 +1,18 @@
 package com.cskaoyan;
 
+import com.cskaoyan.bean.mall.Category;
 import com.cskaoyan.bean.stat.OrderStat;
 import com.cskaoyan.bean.system.Permission;
-
-import com.cskaoyan.bean.mall.Category;
-
 import com.cskaoyan.bean.user.Collect;
 import com.cskaoyan.bean.user.SearchHistory;
 import com.cskaoyan.bean.user.User;
-
-
-import com.cskaoyan.mapper.CategoryMapper;
-import com.cskaoyan.mapper.GoodsMapper;
-import com.cskaoyan.mapper.OrderMapper;
-import com.cskaoyan.mapper.PermissionMapper;
+import com.cskaoyan.mapper.*;
+import com.cskaoyan.service.ConfigService;
 import com.cskaoyan.service.GoodsService;
 import com.cskaoyan.service.MallService;
 import com.cskaoyan.service.UserService;
 import com.cskaoyan.utils.MD5Utils;
 import com.fasterxml.jackson.core.JsonProcessingException;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +22,7 @@ import org.springframework.util.ResourceUtils;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -126,4 +120,15 @@ class MallApplicationTests {
         System.out.println(md5);
     }
 
+    @Autowired
+    ConfigService configService;
+    @Autowired
+    ConfigMapper configMapper;
+
+    @Test
+    public void testConfig() {
+        //List<Config> mall = configMapper.selectSimpleConfig("\'%mall%\'");
+        HashMap<String, String> config = configService.getConfig("mall");
+        System.out.println(config);
+    }
 }
