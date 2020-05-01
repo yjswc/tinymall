@@ -5,6 +5,7 @@ import com.cskaoyan.bean.user.*;
 import com.cskaoyan.service.UserService;
 
 import com.github.pagehelper.PageInfo;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +26,7 @@ public class UserController {
     UserService userService;
 
     @GetMapping("list")
+    @RequiresPermissions("admin:user:list")
     public BaseRespVo getUserInfo(String username, String mobile, Integer page, Integer limit, String sort, String order) {
         List<User> result = userService.queryUsers(username, mobile, page, limit, sort, order);
         HashMap<String, Object> map = new HashMap<>();

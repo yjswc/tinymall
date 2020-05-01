@@ -1,9 +1,10 @@
 package com.cskaoyan.controller;
 
 import com.cskaoyan.bean.BaseRespVo;
-import com.cskaoyan.bean.user.*;
+import com.cskaoyan.bean.user.FootPrint;
 import com.cskaoyan.service.UserService;
 import com.github.pagehelper.PageInfo;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Author: Li Qing
@@ -26,6 +26,7 @@ public class FootprintController {
     UserService userService;
 
     @GetMapping("list")
+    @RequiresPermissions("admin:footprint:list")
     public BaseRespVo getFootPrintInfo(Integer userId, Integer goodsId, Integer page, Integer limit, String sort, String order) {
         List<FootPrint> result = userService.queryFootPrints(userId, goodsId, page, limit, sort, order);
         HashMap<String, Object> map = new HashMap<>();

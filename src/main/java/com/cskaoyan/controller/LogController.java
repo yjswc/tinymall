@@ -4,6 +4,7 @@ import com.cskaoyan.bean.BaseRespVo;
 import com.cskaoyan.bean.system.Log;
 import com.cskaoyan.service.LogService;
 import com.github.pagehelper.PageInfo;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +24,7 @@ public class LogController {
     LogService logService;
 
     @RequestMapping("list")
+    @RequiresPermissions("admin:log:list")
     public BaseRespVo getLogList(String name, Integer page, Integer limit, String sort, String order) {
         List<Log> list = logService.queryLogList(name, page, limit, sort, order);
         HashMap<String, Object> result = new HashMap<>();

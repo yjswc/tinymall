@@ -3,6 +3,7 @@ package com.cskaoyan.service;
 import com.cskaoyan.bean.system.Admin;
 import com.cskaoyan.bean.system.AdminExample;
 import com.cskaoyan.mapper.AdminMapper;
+import com.cskaoyan.utils.MD5Utils;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,8 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Integer updateAdmin(Admin admin) {
         Date date = new Date();
+        String password = admin.getPassword();
+        admin.setPassword(MD5Utils.getMd5(password));
         admin.setUpdateTime(date);
         return adminMapper.updateByPrimaryKeySelective(admin);
     }
@@ -45,6 +48,8 @@ public class AdminServiceImpl implements AdminService {
         Date date = new Date();
         admin.setAddTime(date);
         admin.setUpdateTime(date);
+        String password = admin.getPassword();
+        admin.setPassword(MD5Utils.getMd5(password));
         return adminMapper.insertSelective(admin);
     }
 

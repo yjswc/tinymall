@@ -6,6 +6,7 @@ import com.cskaoyan.bean.BaseRespVo;
 import com.cskaoyan.bean.system.Storage;
 import com.cskaoyan.service.StorageService;
 import com.github.pagehelper.PageInfo;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,7 +28,7 @@ import java.util.Map;
 public class StorageController {
     @Autowired
     StorageService storageService;
-
+    @RequiresPermissions("admin:storage:list")
     @GetMapping("list")
     public BaseRespVo getStorageList(String key, String name, Integer page, Integer limit, String sort, String order) {
         List<Storage> list = storageService.queryStorageList(key, name, page, limit, sort, order);
@@ -38,7 +39,7 @@ public class StorageController {
         return new BaseRespVo<>(0, result, "成功");
     }
 
-
+    @RequiresPermissions("admin:storage:create")
     @PostMapping("create")
     public BaseRespVo createStorage(MultipartFile file) {
         String url = null;
@@ -51,13 +52,13 @@ public class StorageController {
         result.put("url", url);
         return new BaseRespVo(0, result, "成功");
     }
-
+    @RequiresPermissions("admin:storage:update")
     @PostMapping("update")
     public BaseRespVo updateStorage(@RequestBody Storage storage) {
         storageService.updateStorage(storage);
         return new BaseRespVo<>(0, null, "成功");
     }
-
+    @RequiresPermissions("admin:storage:delete")
     @PostMapping("delete")
     public BaseRespVo deleteStorage(@RequestBody Storage storage) {
         storageService.deleteStorage(storage);

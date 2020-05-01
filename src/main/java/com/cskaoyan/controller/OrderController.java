@@ -4,6 +4,7 @@ import com.cskaoyan.bean.BaseRespVo;
 import com.cskaoyan.bean.mall.*;
 import com.cskaoyan.service.MallService;
 import com.github.pagehelper.PageInfo;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class OrderController {
      * @return
      */
     @GetMapping("list")
+    @RequiresPermissions("admin:order:list")
     public BaseRespVo getOrders(Integer id, Integer userId, ArrayList<Short> orderStatusArray, Integer page, Integer limit, String sort, String order) {
         List<Order> orders = mallService.queryOrders(id, userId, orderStatusArray, page, limit, sort, order);
         HashMap<String, Object> result = new HashMap<>();
@@ -44,12 +46,14 @@ public class OrderController {
      * @return
      */
     @GetMapping("detail")
+    @RequiresPermissions("admin:order:detail")
     public BaseRespVo getOrderDetail(Integer id) {
         Map result = mallService.queryOrderDetail(id);
         return new BaseRespVo(0,result,"成功");
     }
 
     @PostMapping("delete")
+    @RequiresPermissions("admin:order:delete")
     public BaseRespVo deleteOrder(Integer orderId) {
         mallService.deleteOrder(orderId);
         return new BaseRespVo(0,null,"成功");

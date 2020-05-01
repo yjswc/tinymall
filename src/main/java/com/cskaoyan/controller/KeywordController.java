@@ -1,18 +1,15 @@
 package com.cskaoyan.controller;
 
 import com.cskaoyan.bean.BaseRespVo;
-import com.cskaoyan.bean.mall.*;
+import com.cskaoyan.bean.mall.Keyword;
 import com.cskaoyan.service.MallService;
 import com.github.pagehelper.PageInfo;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Author: Li Qing
@@ -26,6 +23,7 @@ public class KeywordController {
     MallService mallService;
 
     @GetMapping("list")
+    @RequiresPermissions("admin:keyword:list")
     public BaseRespVo getKeyWords(String keyword, String url, Integer page, Integer limit, String sort, String order) {
         List<Keyword> list = mallService.queryKeywords(keyword, url, page, limit, sort, order);
         long total = PageInfo.of(list).getTotal();
@@ -43,6 +41,7 @@ public class KeywordController {
      */
 
     @PostMapping("create")
+    @RequiresPermissions("admin:keyword:create")
     public BaseRespVo createKeyword(@RequestBody Keyword keyword) {
         mallService.createKeyword(keyword);
         return new BaseRespVo(0, null, "成功");
@@ -55,6 +54,7 @@ public class KeywordController {
      * @return
      */
     @PostMapping("update")
+    @RequiresPermissions("admin:keyword:update")
     public BaseRespVo updateKeyword(@RequestBody Keyword keyword) {
         mallService.updateKeyword(keyword);
         return new BaseRespVo(0, null, "成功");
@@ -69,6 +69,7 @@ public class KeywordController {
      */
 
     @PostMapping("delete")
+    @RequiresPermissions("admin:keyword:delete")
     public BaseRespVo deleteKeyword(@RequestBody Keyword keyword) {
         mallService.deleteKeyword(keyword);
         return new BaseRespVo(0, null, "成功");

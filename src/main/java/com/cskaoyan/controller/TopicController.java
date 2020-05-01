@@ -4,6 +4,7 @@ import com.cskaoyan.bean.BaseRespVo;
 import com.cskaoyan.bean.promotion.Topic;
 import com.cskaoyan.service.TopicService;
 import com.github.pagehelper.PageInfo;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +24,7 @@ public class TopicController {
     TopicService topicService;
 
     @GetMapping("list")
+    @RequiresPermissions("admin:topic:list")
     public BaseRespVo getTopicList(String tile, String subtitle, Integer page, Integer limit, String sort, String order) {
         List<Topic> list = topicService.queryTopicList(tile, subtitle, page, limit, sort, order);
         Map<String, Object> result = new HashMap<>();
@@ -33,18 +35,21 @@ public class TopicController {
     }
 
     @PostMapping("update")
+    @RequiresPermissions("admin:topic:update")
     public BaseRespVo updateTopic(@RequestBody Topic topic) {
         topicService.updateTopic(topic);
         return new BaseRespVo<>(0, null, "成功");
     }
 
     @PostMapping("create")
+    @RequiresPermissions("admin:topic:create")
     public BaseRespVo createTopic(@RequestBody Topic topic) {
         topicService.createTopic(topic);
         return new BaseRespVo<>(0, null, "成功");
     }
 
     @PostMapping("delete")
+    @RequiresPermissions("admin:topic:delete")
     public BaseRespVo deleteTopic(@RequestBody Topic topic) {
         topicService.deleteTopic(topic);
         return new BaseRespVo<>(0, null, "成功");

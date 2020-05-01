@@ -4,6 +4,7 @@ import com.cskaoyan.bean.BaseRespVo;
 import com.cskaoyan.bean.mall.*;
 import com.cskaoyan.service.MallService;
 import com.github.pagehelper.PageInfo;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +26,7 @@ public class IssueController {
     MallService mallService;
 
     @PostMapping("create")
+    @RequiresPermissions("admin:issue:create")
     public BaseRespVo createIssue(@RequestBody Issue issue) {
         mallService.createIssue(issue);
         return new BaseRespVo(0, null, "成功");
@@ -42,6 +44,7 @@ public class IssueController {
      * @return
      */
     @GetMapping("list")
+    @RequiresPermissions("admin:issue:list")
     public BaseRespVo getIssues(String question, Integer page, Integer limit, String sort, String order) {
         List<Issue> list = mallService.queryIssues(question, page, limit, sort, order);
         long total = PageInfo.of(list).getTotal();
@@ -58,6 +61,7 @@ public class IssueController {
      * @return
      */
     @PostMapping("update")
+    @RequiresPermissions("admin:issue:update")
     public BaseRespVo updateIssue(@RequestBody Issue issue) {
         mallService.updateIssue(issue);
         return new BaseRespVo(0, null, "成功");
@@ -71,6 +75,7 @@ public class IssueController {
      */
 
     @PostMapping("delete")
+    @RequiresPermissions("admin:issue:delete")
     public BaseRespVo deleteIssue(@RequestBody Issue issue) {
         mallService.deleteIssue(issue);
         return new BaseRespVo(0, null, "成功");

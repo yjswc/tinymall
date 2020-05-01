@@ -26,6 +26,7 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         //过滤免登录权限请求,过滤迭代有序
         LinkedHashMap<String, String> filterMap = new LinkedHashMap<>();
+        filterMap.put("/upload/**", "anon");
         filterMap.put("/admin/auth/login", "anon");
         filterMap.put("unAuthc", "anon");
         filterMap.put("/index", "anon");
@@ -60,7 +61,7 @@ public class ShiroConfig {
     public DefaultWebSessionManager webSessionManager() {
         return new CustomSessionManager();
     }
-    //
+
     //@DependsOn("lifecycleBeanPostProcessor")
     //@Bean
     //public static DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {

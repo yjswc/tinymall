@@ -121,10 +121,9 @@ class MallApplicationTests {
 
     @Test
     public void testMD5() throws JsonProcessingException {
-        String username = "promotion123";
+        String username = "admin123";
         String md5 = MD5Utils.getMd5(username, username);
         System.out.println(md5);
-
     }
 
 }

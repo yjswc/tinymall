@@ -2,10 +2,9 @@ package com.cskaoyan.controller;
 
 import com.cskaoyan.bean.BaseRespVo;
 import com.cskaoyan.bean.goods.Comment;
-import com.cskaoyan.bean.mall.Order;
 import com.cskaoyan.service.CommentService;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +23,7 @@ public class CommentController {
     CommentService commentService;
 
     @GetMapping("list")
+    @RequiresPermissions("admin:comment:list")
     public BaseRespVo getCommentList(Integer userId, Integer valueId, Integer page, Integer limit, String sort, String order) {
         List<Comment> list = commentService.queryComments(userId, valueId, page, limit, sort, order);
         HashMap<String, Object> result = new HashMap<>();
@@ -42,12 +42,14 @@ public class CommentController {
     //    return new BaseRespVo<>(0, null, "成功");
     //}
     @PostMapping("reply")
+    @RequiresPermissions("admin:comment:reply")
     public BaseRespVo replyComment(@RequestBody Integer commentId, @RequestBody String content) {
         commentService.replyComment(commentId, content);
         return new BaseRespVo<>(0, null, "成功");
     }
 
     @PostMapping("delete")
+    @RequiresPermissions("admin:comment:delete")
     public BaseRespVo deleteComment(@RequestBody Comment comment) {
         commentService.deleteComment(comment);
         return new BaseRespVo(0, null, "成功");

@@ -5,8 +5,7 @@ import com.cskaoyan.bean.stat.GoodsStat;
 import com.cskaoyan.bean.stat.OrderStat;
 import com.cskaoyan.bean.stat.UserStat;
 import com.cskaoyan.service.StatService;
-import javafx.beans.binding.ObjectExpression;
-import jdk.nashorn.internal.ir.CallNode;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +26,7 @@ public class StatController {
     StatService statService;
 
     @GetMapping("user")
+    @RequiresPermissions("admin:stat:user")
     public BaseRespVo getUserStat() {
         List<UserStat> list = statService.queryUserStat();
         HashMap<String, Object> result = new HashMap<>();
@@ -37,6 +37,7 @@ public class StatController {
     }
 
     @GetMapping("order")
+    @RequiresPermissions("admin:stat:order")
     public BaseRespVo getOrderStat() {
         List<OrderStat> list = statService.queryOrderStat();
         HashMap<String, Object> result = new HashMap<>();
@@ -47,6 +48,7 @@ public class StatController {
     }
 
     @GetMapping("goods")
+    @RequiresPermissions("admin:stat:goods")
     public BaseRespVo getGoodsStat() {
         List<GoodsStat> list = statService.queryGoodsStat();
         HashMap<String, Object> result = new HashMap<>();
@@ -55,6 +57,4 @@ public class StatController {
         result.put("rows", list);
         return new BaseRespVo(0, result, "成功");
     }
-
-
 }

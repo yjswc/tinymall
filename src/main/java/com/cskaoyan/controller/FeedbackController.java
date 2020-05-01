@@ -4,6 +4,7 @@ import com.cskaoyan.bean.BaseRespVo;
 import com.cskaoyan.bean.user.Feedback;
 import com.cskaoyan.service.UserService;
 import com.github.pagehelper.PageInfo;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,7 @@ public class FeedbackController {
 
 
     @GetMapping("list")
+    @RequiresPermissions("admin:feedback:list")
     public BaseRespVo getFeekBackInfo(Integer id, String username, Integer page, Integer limit, String sort, String order) {
         List<Feedback> result = userService.queryFeedBacks(id, username, page, limit, sort, order);
         HashMap<String, Object> map = new HashMap<>();

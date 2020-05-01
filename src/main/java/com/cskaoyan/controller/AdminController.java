@@ -3,7 +3,10 @@ package com.cskaoyan.controller;
 import com.cskaoyan.bean.BaseRespVo;
 import com.cskaoyan.bean.system.Admin;
 import com.cskaoyan.service.AdminService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageInfo;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,10 +24,11 @@ import java.util.Map;
 public class AdminController {
     @Autowired
     AdminService adminService;
-    
+
     @GetMapping("list")
-    public BaseRespVo getAdminList(String username, Integer page, Integer limit, String sort, String order){
-        List<Admin> list = adminService.queryAdminList(username,page,limit,sort,order);
+    @RequiresPermissions("admin:admin:list")
+    public BaseRespVo getAdminList(String username, Integer page, Integer limit, String sort, String order) {
+        List<Admin> list = adminService.queryAdminList(username, page, limit, sort, order);
         Map<String, Object> result = new HashMap<>();
         long total = PageInfo.of(list).getTotal();
         result.put("total", total);
@@ -34,20 +38,28 @@ public class AdminController {
 
 
     @PostMapping("update")
+    @RequiresPermissions("admin:admin:update")
     public BaseRespVo updateAdmin(@RequestBody Admin admin) {
-       adminService.updateAdmin(admin);
+        try {
+            System.out.println(new ObjectMapper().writeValueAsString(admin));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        adminService.updateAdmin(admin);
         return new BaseRespVo<>(0, null, "成功");
     }
 
     @PostMapping("create")
+    @RequiresPermissions("admin:admin:create")
     public BaseRespVo createAdmin(@RequestBody Admin admin) {
-       adminService.createAdmin(admin);
+        adminService.createAdmin(admin);
         return new BaseRespVo<>(0, null, "成功");
     }
 
     @PostMapping("delete")
+    @RequiresPermissions("admin:admin:delete")
     public BaseRespVo deleteAdmin(@RequestBody Admin admin) {
-       adminService.deleteAdmin(admin);
+        adminService.deleteAdmin(admin);
         return new BaseRespVo<>(0, null, "成功");
     }
 }
