@@ -3,8 +3,6 @@ package com.cskaoyan.controller;
 import com.cskaoyan.bean.BaseRespVo;
 import com.cskaoyan.bean.system.Admin;
 import com.cskaoyan.service.AdminService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageInfo;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,11 +38,6 @@ public class AdminController {
     @PostMapping("update")
     @RequiresPermissions("admin:admin:update")
     public BaseRespVo updateAdmin(@RequestBody Admin admin) {
-        try {
-            System.out.println(new ObjectMapper().writeValueAsString(admin));
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
         adminService.updateAdmin(admin);
         return new BaseRespVo<>(0, null, "成功");
     }

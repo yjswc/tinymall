@@ -7,6 +7,7 @@ import com.cskaoyan.service.AdminService;
 import com.cskaoyan.service.RoleService;
 import com.cskaoyan.utils.MD5Utils;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,12 +41,6 @@ public class AuthController {
         return new BaseRespVo(0, id, "成功");
     }
 
-    //在真正之前先访问success
-    //认证通过之后在访问success
-    @RequestMapping("success")
-    public String success() {
-        return "success";
-    }
 
     @RequestMapping("/admin/auth/info")
     @ResponseBody
@@ -79,6 +74,13 @@ public class AuthController {
     @RequestMapping("unAuthc")
     public String unAuthc() {
         return "forward:/index";
+    }
+
+    //在真正之前先访问success
+    //认证通过之后在访问success
+    @RequestMapping("success")
+    public String success() {
+        return "success";
     }
 
     /*
