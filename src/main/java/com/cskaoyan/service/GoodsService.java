@@ -1,8 +1,8 @@
 package com.cskaoyan.service;
 
-import com.cskaoyan.bean.goods.*;
+import com.cskaoyan.bean.goods.Goods;
+import com.cskaoyan.bean.goods.GoodsInTotal;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -27,4 +27,6 @@ public interface GoodsService {
     Long queryTotalGoods();
 
     Long queryTotalProducts();
+    //======================微信小程序相关接口=================================//
+    List<Goods> queryGoodsList4Wx(Boolean isNew,Boolean isHot);
 }

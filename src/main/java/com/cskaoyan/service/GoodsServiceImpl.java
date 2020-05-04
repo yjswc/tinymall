@@ -330,5 +330,11 @@ public class GoodsServiceImpl implements GoodsService {
         example.createCriteria().andDeletedEqualTo(false);
         return productMapper.countByExample(example);
     }
+
+    //=============================微信小程序相关接口==========================================//
+    @Override
+    public List<Goods> queryGoodsList4Wx(Boolean isNew, Boolean isHot) {
+        return goodsMapper.selectGoodsList4Wx(isNew, isHot, 6);
+    }
 }
 

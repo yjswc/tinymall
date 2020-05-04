@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface RegionMapper {
-     String selectRegionName(Integer code);
+    String selectRegionName(Integer code);
 
     long countByExample(RegionExample example);
 
@@ -30,4 +30,5 @@ public interface RegionMapper {
     int updateByPrimaryKeySelective(Region record);
 
     int updateByPrimaryKey(Region record);
+
 }

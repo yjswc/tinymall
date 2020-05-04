@@ -1,6 +1,7 @@
 package com.cskaoyan.service;
 
 import com.cskaoyan.bean.promotion.Groupon_Rules;
+import com.cskaoyan.bean.promotion.pojo.SimpleGroupon4Wx;
 
 import java.util.List;
 import java.util.Map;
@@ -20,4 +21,8 @@ public interface GrouponService {
     Integer deleteGroupon_Rules(Groupon_Rules groupon_rules);
 
     Map<String, Object> queryGrouponListRecord(Integer goodsId, Integer page, Integer limit, String sort, String order);
+
+    //==========================微信小程序接口分割线======================================//
+
+    List<SimpleGroupon4Wx> queryGrouponList4Wx();
 }

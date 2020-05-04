@@ -1,6 +1,7 @@
 package com.cskaoyan.service;
 
 import com.cskaoyan.bean.promotion.*;
+import com.cskaoyan.bean.promotion.pojo.SimpleGroupon4Wx;
 import com.cskaoyan.mapper.CouponMapper;
 import com.cskaoyan.mapper.CouponUserMapper;
 import com.github.pagehelper.PageHelper;
@@ -74,5 +75,11 @@ public class CouponServiceImpl implements CouponService {
         if (status != null) criteria.andStatusEqualTo(status);
         criteria.andDeletedEqualTo(false);
         return couponUserMapper.selectByExample(example);
+    }
+
+    //========================微信小程序接口分割线================================//
+    @Override
+    public List<SimpleGroupon4Wx> queryCouponList4Wx() {
+        return couponMapper.selectCouponList4Wx();
     }
 }

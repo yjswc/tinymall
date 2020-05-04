@@ -17,4 +17,7 @@ public interface TopicService {
     Integer createTopic(Topic topic);
 
     Integer deleteTopic(Topic topic);
+
+    //===========================微信小程序分割线============================//
+    List<Topic> queryTopicList4Wx();
 }

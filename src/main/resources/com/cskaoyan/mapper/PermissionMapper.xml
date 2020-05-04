@@ -87,7 +87,7 @@
         </if>
         'true' as QUERYID,
         <include refid="Base_Column_List"/>
-        from cskaoyan_mall_allpermissions
+        from cskaoyanmall_allpermissions
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -98,29 +98,29 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from cskaoyan_mall_allpermissions
+        from cskaoyanmall_allpermissions
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete
-        from cskaoyan_mall_allpermissions
+        from cskaoyanmall_allpermissions
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <delete id="deleteByExample" parameterType="com.cskaoyan.bean.system.PermissionExample">
-        delete from cskaoyan_mall_allpermissions
+        delete from cskaoyanmall_allpermissions
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
     <insert id="insert" parameterType="com.cskaoyan.bean.system.Permission">
-        insert into cskaoyan_mall_allpermissions (id, permission, api,
+        insert into cskaoyanmall_allpermissions (id, permission, api,
                                                   pid, label)
         values (#{id,jdbcType=INTEGER}, #{permission,jdbcType=VARCHAR}, #{api,jdbcType=VARCHAR},
                 #{pid,jdbcType=INTEGER}, #{label,jdbcType=VARCHAR})
     </insert>
     <insert id="insertSelective" parameterType="com.cskaoyan.bean.system.Permission" useGeneratedKeys="true"
             keyProperty="id">
-        insert into cskaoyan_mall_allpermissions
+        insert into cskaoyanmall_allpermissions
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -159,30 +159,30 @@
     <select id="selectPermissionListByPid" resultMap="myResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
-        from cskaoyan_mall_allpermissions
+        from cskaoyanmall_allpermissions
         where pid = #{id}
     </select>
     <select id="countByExample" parameterType="com.cskaoyan.bean.system.PermissionExample" resultType="java.lang.Long">
-        select count(*) from cskaoyan_mall_allpermissions
+        select count(*) from cskaoyanmall_allpermissions
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
     <select id="selectPermissionList" resultType="java.lang.String">
         select permission
-        from cskaoyan_mall_allpermissions
+        from cskaoyanmall_allpermissions
         where api is not null
     </select>
     <select id="selectPermissionAPI" resultType="java.lang.String">
         select api
-        from cskaoyan_mall_allpermissions
+        from cskaoyanmall_allpermissions
         where permission in
         <foreach collection="permissions" item="permission" separator="," open="(" close=")">
             #{permission}
         </foreach>
     </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update cskaoyan_mall_allpermissions
+        update cskaoyanmall_allpermissions
         <set>
             <if test="record.id != null">
                 id = #{record.id,jdbcType=INTEGER},
@@ -205,7 +205,7 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update cskaoyan_mall_allpermissions
+        update cskaoyanmall_allpermissions
         set id = #{record.id,jdbcType=INTEGER},
         permission = #{record.permission,jdbcType=VARCHAR},
         api = #{record.api,jdbcType=VARCHAR},
@@ -216,7 +216,7 @@
         </if>
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.system.Permission">
-        update cskaoyan_mall_allpermissions
+        update cskaoyanmall_allpermissions
         <set>
             <if test="permission != null">
                 permission = #{permission,jdbcType=VARCHAR},
@@ -234,7 +234,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.system.Permission">
-        update cskaoyan_mall_allpermissions
+        update cskaoyanmall_allpermissions
         set permission = #{permission,jdbcType=VARCHAR},
             api        = #{api,jdbcType=VARCHAR},
             pid        = #{pid,jdbcType=INTEGER},

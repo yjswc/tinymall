@@ -78,7 +78,7 @@
         </if>
         'false' as QUERYID,
         <include refid="Base_Column_List"/>
-        from cskaoyan_mall_region
+        from cskaoyanmall_region
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -89,28 +89,28 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from cskaoyan_mall_region
+        from cskaoyanmall_region
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete
-        from cskaoyan_mall_region
+        from cskaoyanmall_region
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <delete id="deleteByExample" parameterType="com.cskaoyan.bean.mall.RegionExample">
-        delete from cskaoyan_mall_region
+        delete from cskaoyanmall_region
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
     <insert id="insert" parameterType="com.cskaoyan.bean.mall.Region">
-        insert into cskaoyan_mall_region (id, pid, name,
+        insert into cskaoyanmall_region (id, pid, name,
                                           type, code)
         values (#{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
                 #{type,jdbcType=TINYINT}, #{code,jdbcType=INTEGER})
     </insert>
     <insert id="insertSelective" parameterType="com.cskaoyan.bean.mall.Region">
-        insert into cskaoyan_mall_region
+        insert into cskaoyanmall_region
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -147,18 +147,18 @@
         </trim>
     </insert>
     <select id="countByExample" parameterType="com.cskaoyan.bean.mall.RegionExample" resultType="java.lang.Long">
-        select count(*) from cskaoyan_mall_region
+        select count(*) from cskaoyanmall_region
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
     <select id="selectRegionName" resultType="java.lang.String">
         select name
-        from cskaoyan_mall_region
+        from cskaoyanmall_region
         where code = #{code}
     </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update cskaoyan_mall_region
+        update cskaoyanmall_region
         <set>
             <if test="record.id != null">
                 id = #{record.id,jdbcType=INTEGER},
@@ -181,7 +181,7 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update cskaoyan_mall_region
+        update cskaoyanmall_region
         set id = #{record.id,jdbcType=INTEGER},
         pid = #{record.pid,jdbcType=INTEGER},
         name = #{record.name,jdbcType=VARCHAR},
@@ -192,7 +192,7 @@
         </if>
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.mall.Region">
-        update cskaoyan_mall_region
+        update cskaoyanmall_region
         <set>
             <if test="pid != null">
                 pid = #{pid,jdbcType=INTEGER},
@@ -210,7 +210,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.mall.Region">
-        update cskaoyan_mall_region
+        update cskaoyanmall_region
         set pid  = #{pid,jdbcType=INTEGER},
             name = #{name,jdbcType=VARCHAR},
             type = #{type,jdbcType=TINYINT},

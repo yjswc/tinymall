@@ -24,4 +24,6 @@ public interface UserService {
     List<Feedback> queryFeedBacks(Integer id, String username, Integer page, Integer limit, String sort, String order);
 
     Long queryTotalUsers();
+
+    List<User> queryPwdByUserName(String username);
 }

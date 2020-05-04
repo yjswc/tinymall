@@ -2,8 +2,6 @@ package com.cskaoyan.service;
 
 import com.cskaoyan.bean.goods.Comment;
 import com.cskaoyan.bean.goods.CommentExample;
-import com.cskaoyan.bean.mall.CategoryExample;
-import com.cskaoyan.mapper.CollectMapper;
 import com.cskaoyan.mapper.CommentMapper;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;

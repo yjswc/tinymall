@@ -34,4 +34,8 @@ public interface TopicMapper {
     int updateByPrimaryKeyWithBLOBs(Topic record);
 
     int updateByPrimaryKey(Topic record);
+
+    //=====================微信小程序接口分割线=================================//
+    List<Topic> selectTopicList4Wx(Integer limit);
+
 }

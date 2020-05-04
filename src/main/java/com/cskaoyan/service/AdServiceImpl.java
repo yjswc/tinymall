@@ -58,4 +58,14 @@ public class AdServiceImpl implements AdService {
         advertisement.setDeleted(true);
         return advertisementMapper.updateByPrimaryKeySelective(advertisement);
     }
+
+    //===========================小程序接口分割线==================================//
+
+    @Override
+    public List<Advertisement> queryAdList4Wx() {
+        PageHelper.startPage(1, 6);
+        AdvertisementExample example = new AdvertisementExample();
+        example.createCriteria().andDeletedEqualTo(false);
+        return advertisementMapper.selectByExample(example);
+    }
 }

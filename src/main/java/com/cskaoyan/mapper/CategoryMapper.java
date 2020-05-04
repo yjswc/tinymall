@@ -3,6 +3,7 @@ package com.cskaoyan.mapper;
 import com.cskaoyan.bean.goods.SimpleCategory;
 import com.cskaoyan.bean.mall.Category;
 import com.cskaoyan.bean.mall.CategoryExample;
+import com.cskaoyan.bean.mall.pojo.Category4Wx;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -33,4 +34,11 @@ public interface CategoryMapper {
     int updateByPrimaryKeySelective(Category record);
 
     int updateByPrimaryKey(Category record);
+
+    //================================微信小程序分割线===========================================//
+
+    List<Category> selectParentCategoryList4Wx();
+
+    List<Category4Wx> selectFloorGoodsList4Wx();
+
 }

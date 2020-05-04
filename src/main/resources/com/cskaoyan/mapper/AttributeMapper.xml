@@ -83,7 +83,7 @@
         </if>
         'true' as QUERYID,
         <include refid="Base_Column_List"/>
-        from cskaoyan_mall_goods_attribute
+        from cskaoyanmall_goods_attribute
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -94,22 +94,22 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from cskaoyan_mall_goods_attribute
+        from cskaoyanmall_goods_attribute
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete
-        from cskaoyan_mall_goods_attribute
+        from cskaoyanmall_goods_attribute
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <delete id="deleteByExample" parameterType="com.cskaoyan.bean.goods.AttributeExample">
-        delete from cskaoyan_mall_goods_attribute
+        delete from cskaoyanmall_goods_attribute
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
     <insert id="insert" parameterType="com.cskaoyan.bean.goods.Attribute">
-        insert into cskaoyan_mall_goods_attribute (id, goods_id, attribute,
+        insert into cskaoyanmall_goods_attribute (id, goods_id, attribute,
                                                    value, add_time, update_time,
                                                    deleted)
         values (#{id,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{attribute,jdbcType=VARCHAR},
@@ -117,7 +117,7 @@
                 #{deleted,jdbcType=BIT})
     </insert>
     <insert id="insertSelective" parameterType="com.cskaoyan.bean.goods.Attribute">
-        insert into cskaoyan_mall_goods_attribute
+        insert into cskaoyanmall_goods_attribute
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -166,7 +166,7 @@
         </trim>
     </insert>
     <insert id="insertAttributeListSelective" parameterType="list">
-        insert into cskaoyan_mall_goods_attribute
+        insert into cskaoyanmall_goods_attribute
         (<include refid="insert_Attributes_List"/>)
         values
         <foreach collection="list" item="item" separator=",">
@@ -174,13 +174,13 @@
         </foreach>
     </insert>
     <select id="countByExample" parameterType="com.cskaoyan.bean.goods.AttributeExample" resultType="java.lang.Long">
-        select count(*) from cskaoyan_mall_goods_attribute
+        select count(*) from cskaoyanmall_goods_attribute
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update cskaoyan_mall_goods_attribute
+        update cskaoyanmall_goods_attribute
         <set>
             <if test="record.id != null">
                 id = #{record.id,jdbcType=INTEGER},
@@ -209,7 +209,7 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update cskaoyan_mall_goods_attribute
+        update cskaoyanmall_goods_attribute
         set id = #{record.id,jdbcType=INTEGER},
         goods_id = #{record.goodsId,jdbcType=INTEGER},
         attribute = #{record.attribute,jdbcType=VARCHAR},
@@ -222,7 +222,7 @@
         </if>
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.goods.Attribute">
-        update cskaoyan_mall_goods_attribute
+        update cskaoyanmall_goods_attribute
         <set>
             <if test="goodsId != null">
                 goods_id = #{goodsId,jdbcType=INTEGER},
@@ -246,7 +246,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.goods.Attribute">
-        update cskaoyan_mall_goods_attribute
+        update cskaoyanmall_goods_attribute
         set goods_id    = #{goodsId,jdbcType=INTEGER},
             attribute   = #{attribute,jdbcType=VARCHAR},
             value       = #{value,jdbcType=VARCHAR},

@@ -1,12 +1,14 @@
 package com.cskaoyan.bean.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 
 public class User {
     private Integer id;
 
     private String username;
-
+    @JsonIgnore
     private String password;
 
     private Byte gender;

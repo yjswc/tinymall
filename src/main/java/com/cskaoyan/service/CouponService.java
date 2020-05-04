@@ -2,6 +2,7 @@ package com.cskaoyan.service;
 
 import com.cskaoyan.bean.promotion.Coupon;
 import com.cskaoyan.bean.promotion.CouponUser;
+import com.cskaoyan.bean.promotion.pojo.SimpleGroupon4Wx;
 
 import java.util.List;
 
@@ -22,4 +23,7 @@ public interface CouponService {
     Coupon queryCouponById(Integer id);
 
     List<CouponUser> queryCouponUserList(Integer couponId, Integer userId, Short status, Integer page, Integer limit, String sort, String order);
+
+    //====================微信小程序相关接口=========================//
+    List<SimpleGroupon4Wx> queryCouponList4Wx();
 }

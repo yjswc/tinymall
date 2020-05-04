@@ -85,7 +85,7 @@
         </if>
         'true' as QUERYID,
         <include refid="Base_Column_List"/>
-        from cskaoyan_mall_role
+        from cskaoyanmall_role
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -96,22 +96,22 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from cskaoyan_mall_role
+        from cskaoyanmall_role
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete
-        from cskaoyan_mall_role
+        from cskaoyanmall_role
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <delete id="deleteByExample" parameterType="com.cskaoyan.bean.system.RoleExample">
-        delete from cskaoyan_mall_role
+        delete from cskaoyanmall_role
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
     <insert id="insert" parameterType="com.cskaoyan.bean.system.Role">
-        insert into cskaoyan_mall_role (id, name, `desc`,
+        insert into cskaoyanmall_role (id, name, `desc`,
                                         enabled, add_time, update_time,
                                         deleted)
         values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR},
@@ -119,7 +119,7 @@
                 #{deleted,jdbcType=BIT})
     </insert>
     <insert id="insertSelective" parameterType="com.cskaoyan.bean.system.Role">
-        insert into cskaoyan_mall_role
+        insert into cskaoyanmall_role
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -168,24 +168,24 @@
         </trim>
     </insert>
     <select id="countByExample" parameterType="com.cskaoyan.bean.system.RoleExample" resultType="java.lang.Long">
-        select count(*) from cskaoyan_mall_role
+        select count(*) from cskaoyanmall_role
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
     <select id="selectRoleOptions" resultMap="roleOptionMap">
         select id, name
-        from cskaoyan_mall_role
+        from cskaoyanmall_role
         where deleted = 0
     </select>
     <select id="selectRoleNameSetByRoleIds" resultType="java.lang.String">
-        select distinct name from cskaoyan_mall_role where deleted = 0 and id in
+        select distinct name from cskaoyanmall_role where deleted = 0 and id in
         <foreach collection="roleIds" item="roleId" open="(" close=")" separator=",">
             #{roleId}
         </foreach>
     </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update cskaoyan_mall_role
+        update cskaoyanmall_role
         <set>
             <if test="record.id != null">
                 id = #{record.id,jdbcType=INTEGER},
@@ -214,7 +214,7 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update cskaoyan_mall_role
+        update cskaoyanmall_role
         set id = #{record.id,jdbcType=INTEGER},
         name = #{record.name,jdbcType=VARCHAR},
         `desc` = #{record.desc,jdbcType=VARCHAR},
@@ -227,7 +227,7 @@
         </if>
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.system.Role">
-        update cskaoyan_mall_role
+        update cskaoyanmall_role
         <set>
             <if test="name != null">
                 name = #{name,jdbcType=VARCHAR},
@@ -251,7 +251,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.system.Role">
-        update cskaoyan_mall_role
+        update cskaoyanmall_role
         set name        = #{name,jdbcType=VARCHAR},
             `desc`      = #{desc,jdbcType=VARCHAR},
             enabled     = #{enabled,jdbcType=BIT},

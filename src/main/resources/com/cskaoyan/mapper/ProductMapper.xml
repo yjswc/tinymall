@@ -85,7 +85,7 @@
         </if>
         'true' as QUERYID,
         <include refid="Base_Column_List"/>
-        from cskaoyan_mall_goods_product
+        from cskaoyanmall_goods_product
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -96,22 +96,22 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from cskaoyan_mall_goods_product
+        from cskaoyanmall_goods_product
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete
-        from cskaoyan_mall_goods_product
+        from cskaoyanmall_goods_product
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <delete id="deleteByExample" parameterType="com.cskaoyan.bean.goods.ProductExample">
-        delete from cskaoyan_mall_goods_product
+        delete from cskaoyanmall_goods_product
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
     <insert id="insert" parameterType="com.cskaoyan.bean.goods.Product">
-        insert into cskaoyan_mall_goods_product (id, goods_id, specifications,
+        insert into cskaoyanmall_goods_product (id, goods_id, specifications,
                                                  price, number, url,
                                                  add_time, update_time, deleted)
         values (#{id,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{specifications,jdbcType=VARCHAR},
@@ -119,7 +119,7 @@
                 #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT})
     </insert>
     <insert id="insertSelective" parameterType="com.cskaoyan.bean.goods.Product">
-        insert into cskaoyan_mall_goods_product
+        insert into cskaoyanmall_goods_product
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -181,7 +181,7 @@
     </insert>
     <insert id="insertProductListSelective" parameterType="list">
         insert into
-        cskaoyan_mall_goods_product
+        cskaoyanmall_goods_product
         (<include refid="insert_Products_List"/>)
         values
         <foreach collection="list" item="item" separator=",">
@@ -196,13 +196,13 @@
         </foreach>
     </insert>
     <select id="countByExample" parameterType="com.cskaoyan.bean.goods.ProductExample" resultType="java.lang.Long">
-        select count(*) from cskaoyan_mall_goods_product
+        select count(*) from cskaoyanmall_goods_product
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update cskaoyan_mall_goods_product
+        update cskaoyanmall_goods_product
         <set>
             <if test="record.id != null">
                 id = #{record.id,jdbcType=INTEGER},
@@ -237,7 +237,7 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update cskaoyan_mall_goods_product
+        update cskaoyanmall_goods_product
         set id = #{record.id,jdbcType=INTEGER},
         goods_id = #{record.goodsId,jdbcType=INTEGER},
         specifications = #{record.specifications,jdbcType=VARCHAR},
@@ -252,7 +252,7 @@
         </if>
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.goods.Product">
-        update cskaoyan_mall_goods_product
+        update cskaoyanmall_goods_product
         <set>
             <if test="goodsId != null">
                 goods_id = #{goodsId,jdbcType=INTEGER},
@@ -282,7 +282,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.goods.Product">
-        update cskaoyan_mall_goods_product
+        update cskaoyanmall_goods_product
         set goods_id       = #{goodsId,jdbcType=INTEGER},
             specifications = #{specifications,jdbcType=VARCHAR},
             price          = #{price,jdbcType=DECIMAL},

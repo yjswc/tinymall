@@ -17,7 +17,9 @@ public interface BrandMapper {
     int insert(Brand record);
 
     int insertSelective(Brand record);
+
     List<SimpleBrand> selectSimpleInfoList();
+
     List<Brand> selectByExample(BrandExample example);
 
     Brand selectByPrimaryKey(Integer id);
@@ -29,4 +31,8 @@ public interface BrandMapper {
     int updateByPrimaryKeySelective(Brand record);
 
     int updateByPrimaryKey(Brand record);
+
+    //=======================微信小程序接口分割线============================//
+    List<Brand> selectBrandList4Wx(Integer limit);
+
 }

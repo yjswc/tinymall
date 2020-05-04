@@ -102,7 +102,7 @@
         </if>
         'true' as QUERYID,
         <include refid="Base_Column_List"/>
-        from cskaoyan_mall_order
+        from cskaoyanmall_order
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -113,22 +113,22 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from cskaoyan_mall_order
+        from cskaoyanmall_order
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete
-        from cskaoyan_mall_order
+        from cskaoyanmall_order
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <delete id="deleteByExample" parameterType="com.cskaoyan.bean.mall.OrderExample">
-        delete from cskaoyan_mall_order
+        delete from cskaoyanmall_order
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
     <insert id="insert" parameterType="com.cskaoyan.bean.mall.Order">
-        insert into cskaoyan_mall_order (id, user_id, order_sn,
+        insert into cskaoyanmall_order (id, user_id, order_sn,
                                          order_status, consignee, mobile,
                                          address, message, goods_price,
                                          freight_price, coupon_price, integral_price,
@@ -148,7 +148,7 @@
                 #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT})
     </insert>
     <insert id="insertSelective" parameterType="com.cskaoyan.bean.mall.Order">
-        insert into cskaoyan_mall_order
+        insert into cskaoyanmall_order
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -311,7 +311,7 @@
         </trim>
     </insert>
     <select id="countByExample" parameterType="com.cskaoyan.bean.mall.OrderExample" resultType="java.lang.Long">
-        select count(*) from cskaoyan_mall_order
+        select count(*) from cskaoyanmall_order
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -322,13 +322,13 @@
                count(distinct user_id) as customers,
                sum(order_price)        as amount,
                add_time                as day
-        from cskaoyan_mall_order
+        from cskaoyanmall_order
         where deleted = 0
           and order_status not in (102, 103, 203)
         group by add_time
     </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update cskaoyan_mall_order
+        update cskaoyanmall_order
         <set>
             <if test="record.id != null">
                 id = #{record.id,jdbcType=INTEGER},
@@ -414,7 +414,7 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update cskaoyan_mall_order
+        update cskaoyanmall_order
         set id = #{record.id,jdbcType=INTEGER},
         user_id = #{record.userId,jdbcType=INTEGER},
         order_sn = #{record.orderSn,jdbcType=VARCHAR},
@@ -446,7 +446,7 @@
         </if>
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.mall.Order">
-        update cskaoyan_mall_order
+        update cskaoyanmall_order
         <set>
             <if test="userId != null">
                 user_id = #{userId,jdbcType=INTEGER},
@@ -527,7 +527,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.mall.Order">
-        update cskaoyan_mall_order
+        update cskaoyanmall_order
         set user_id        = #{userId,jdbcType=INTEGER},
             order_sn       = #{orderSn,jdbcType=VARCHAR},
             order_status   = #{orderStatus,jdbcType=SMALLINT},

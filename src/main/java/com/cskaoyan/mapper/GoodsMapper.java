@@ -2,7 +2,6 @@ package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.goods.Goods;
 import com.cskaoyan.bean.goods.GoodsExample;
-import com.cskaoyan.bean.stat.GoodsStat;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -35,5 +34,14 @@ public interface GoodsMapper {
     int updateByPrimaryKeyWithBLOBs(Goods record);
 
     int updateByPrimaryKey(Goods record);
+
+    //===========================微信小程序相关分割线=====================================//
+    List<Goods> selectGoodsList4Wx(@Param("isNew") Boolean isNew, @Param("isHot") Boolean isHot, @Param("limit") Integer limit);
+
+    //按商品编号找商品信息
+    Goods selectGoodsById4Wx(Integer id);
+
+    //按货物类目编号表返回的信息
+    List<Goods> selectGoodsByCategoryIds4Wx(@Param("categoryIds") List<Integer> categoryIds, @Param("limit") Integer limit);
 
 }

@@ -39,6 +39,4 @@ public class Category {
     private Date updateTime;
     private Boolean deleted;
     private List<Category> children;
-
-
 }

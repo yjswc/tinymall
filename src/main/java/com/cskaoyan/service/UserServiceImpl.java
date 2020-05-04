@@ -1,6 +1,5 @@
 package com.cskaoyan.service;
 
-import com.cskaoyan.bean.goods.GoodsExample;
 import com.cskaoyan.bean.user.*;
 import com.cskaoyan.mapper.*;
 import com.github.pagehelper.PageHelper;
@@ -174,6 +173,19 @@ public class UserServiceImpl implements UserService {
         UserExample example = new UserExample();
         example.createCriteria().andDeletedEqualTo(false);
         return userMapper.countByExample(example);
+    }
+
+    /**
+     * 查询特定用户密码
+     *
+     * @param username
+     * @return
+     */
+    @Override
+    public List<User> queryPwdByUserName(String username) {
+        UserExample example = new UserExample();
+        example.createCriteria().andDeletedEqualTo(false).andUsernameNotEqualTo(username);
+   return userMapper.selectByExample(example);
     }
 }
 

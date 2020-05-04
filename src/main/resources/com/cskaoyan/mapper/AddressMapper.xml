@@ -86,7 +86,7 @@
         </if>
         'false' as QUERYID,
         <include refid="Base_Column_List"/>
-        from cskaoyan_mall_address
+        from cskaoyanmall_address
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -97,22 +97,22 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from cskaoyan_mall_address
+        from cskaoyanmall_address
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete
-        from cskaoyan_mall_address
+        from cskaoyanmall_address
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <delete id="deleteByExample" parameterType="com.cskaoyan.bean.user.AddressExample">
-        delete from cskaoyan_mall_address
+        delete from cskaoyanmall_address
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
     <insert id="insert" parameterType="com.cskaoyan.bean.user.Address">
-        insert into cskaoyan_mall_address (id, name, user_id,
+        insert into cskaoyanmall_address (id, name, user_id,
                                            province_id, city_id, area_id,
                                            address, mobile, is_default,
                                            add_time, update_time, deleted)
@@ -122,7 +122,7 @@
                 #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT})
     </insert>
     <insert id="insertSelective" parameterType="com.cskaoyan.bean.user.Address">
-        insert into cskaoyan_mall_address
+        insert into cskaoyanmall_address
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -201,13 +201,13 @@
         </trim>
     </insert>
     <select id="countByExample" parameterType="com.cskaoyan.bean.user.AddressExample" resultType="java.lang.Long">
-        select count(*) from cskaoyan_mall_address
+        select count(*) from cskaoyanmall_address
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update cskaoyan_mall_address
+        update cskaoyanmall_address
         <set>
             <if test="record.id != null">
                 id = #{record.id,jdbcType=INTEGER},
@@ -251,7 +251,7 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update cskaoyan_mall_address
+        update cskaoyanmall_address
         set id = #{record.id,jdbcType=INTEGER},
         name = #{record.name,jdbcType=VARCHAR},
         user_id = #{record.userId,jdbcType=INTEGER},
@@ -269,7 +269,7 @@
         </if>
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.user.Address">
-        update cskaoyan_mall_address
+        update cskaoyanmall_address
         <set>
             <if test="name != null">
                 name = #{name,jdbcType=VARCHAR},
@@ -308,7 +308,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.user.Address">
-        update cskaoyan_mall_address
+        update cskaoyanmall_address
         set name        = #{name,jdbcType=VARCHAR},
             user_id     = #{userId,jdbcType=INTEGER},
             province_id = #{provinceId,jdbcType=INTEGER},

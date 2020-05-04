@@ -13,4 +13,7 @@ public class Region {
     private Byte type;
 
     private Integer code;
+
+    //private List<Region> children;
+
 }

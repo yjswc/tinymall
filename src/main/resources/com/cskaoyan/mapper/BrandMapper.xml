@@ -16,6 +16,13 @@
         <id column="id" jdbcType="INTEGER" property="value"/>
         <result column="name" jdbcType="VARCHAR" property="label"/>
     </resultMap>
+    <resultMap id="BaseResultMap4Wx" type="com.cskaoyan.bean.mall.Brand">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="desc" jdbcType="VARCHAR" property="desc"/>
+        <result column="pic_url" jdbcType="VARCHAR" property="picUrl"/>
+        <result column="floor_price" jdbcType="DECIMAL" property="floorPrice"/>
+    </resultMap>
     <sql id="Example_Where_Clause">
         <where>
             <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -80,10 +87,14 @@
         id, name,
         `desc`, pic_url, sort_order, floor_price, add_time, update_time, deleted
     </sql>
+    <sql id="Base_Column_List4Wx">
+        id, name,
+        `desc`, pic_url, floor_price
+    </sql>
     <select id="selectSimpleInfoList" resultMap="SimpleResultMap">
         select
         <include refid="Base_Column_List"/>
-        from cskaoyan_mall_brand
+        from cskaoyanmall_brand
         where deleted = 0
     </select>
     <select id="selectByExample" parameterType="com.cskaoyan.bean.mall.BrandExample" resultMap="BaseResultMap">
@@ -93,7 +104,7 @@
         </if>
         'true' as QUERYID,
         <include refid="Base_Column_List"/>
-        from cskaoyan_mall_brand
+        from cskaoyanmall_brand
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -104,22 +115,22 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from cskaoyan_mall_brand
+        from cskaoyanmall_brand
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete
-        from cskaoyan_mall_brand
+        from cskaoyanmall_brand
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <delete id="deleteByExample" parameterType="com.cskaoyan.bean.mall.BrandExample">
-        delete from cskaoyan_mall_brand
+        delete from cskaoyanmall_brand
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
     <insert id="insert" parameterType="com.cskaoyan.bean.mall.Brand">
-        insert into cskaoyan_mall_brand (id, name, `desc`,
+        insert into cskaoyanmall_brand (id, name, `desc`,
                                          pic_url, sort_order, floor_price,
                                          add_time, update_time, deleted)
         values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR},
@@ -127,7 +138,7 @@
                 #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT})
     </insert>
     <insert id="insertSelective" parameterType="com.cskaoyan.bean.mall.Brand">
-        insert into cskaoyan_mall_brand
+        insert into cskaoyanmall_brand
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -188,13 +199,21 @@
         </trim>
     </insert>
     <select id="countByExample" parameterType="com.cskaoyan.bean.mall.BrandExample" resultType="java.lang.Long">
-        select count(*) from cskaoyan_mall_brand
+        select count(*) from cskaoyanmall_brand
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
+    <select id="selectBrandList4Wx" resultMap="BaseResultMap4Wx">
+        select
+        <include refid="Base_Column_List4Wx"/>
+        from cskaoyanmall_brand where deleted = 0
+        <if test="limit!=null">
+            limit #{limit}
+        </if>
+    </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update cskaoyan_mall_brand
+        update cskaoyanmall_brand
         <set>
             <if test="record.id != null">
                 id = #{record.id,jdbcType=INTEGER},
@@ -229,7 +248,7 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update cskaoyan_mall_brand
+        update cskaoyanmall_brand
         set id = #{record.id,jdbcType=INTEGER},
         name = #{record.name,jdbcType=VARCHAR},
         `desc` = #{record.desc,jdbcType=VARCHAR},
@@ -244,7 +263,7 @@
         </if>
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.mall.Brand">
-        update cskaoyan_mall_brand
+        update cskaoyanmall_brand
         <set>
             <if test="name != null">
                 name = #{name,jdbcType=VARCHAR},
@@ -274,7 +293,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.mall.Brand">
-        update cskaoyan_mall_brand
+        update cskaoyanmall_brand
         set name        = #{name,jdbcType=VARCHAR},
             `desc`      = #{desc,jdbcType=VARCHAR},
             pic_url     = #{picUrl,jdbcType=VARCHAR},

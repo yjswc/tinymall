@@ -6,11 +6,11 @@ import com.cskaoyan.bean.promotion.Groupon;
 import com.cskaoyan.bean.promotion.GrouponExample;
 import com.cskaoyan.bean.promotion.Groupon_Rules;
 import com.cskaoyan.bean.promotion.Groupon_RulesExample;
+import com.cskaoyan.bean.promotion.pojo.SimpleGroupon4Wx;
 import com.cskaoyan.mapper.GoodsMapper;
 import com.cskaoyan.mapper.GrouponMapper;
 import com.cskaoyan.mapper.Groupon_RulesMapper;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -115,5 +115,11 @@ public class GrouponServiceImpl implements GrouponService {
         criteria.andDeletedEqualTo(false).andPayedEqualTo(true);
         if (grouponId != null) criteria.andGrouponIdEqualTo(grouponId);
         return grouponMapper.selectByExample(example);
+    }
+    //==========================微信小程序接口分割线======================================//
+
+    @Override
+    public List<SimpleGroupon4Wx> queryGrouponList4Wx() {
+        return groupon_rulesMapper.selectGrouponList4Wx(6);
     }
 }

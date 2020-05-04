@@ -2,6 +2,7 @@ package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.promotion.Groupon_Rules;
 import com.cskaoyan.bean.promotion.Groupon_RulesExample;
+import com.cskaoyan.bean.promotion.pojo.SimpleGroupon4Wx;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -28,4 +29,8 @@ public interface Groupon_RulesMapper {
     int updateByPrimaryKeySelective(Groupon_Rules record);
 
     int updateByPrimaryKey(Groupon_Rules record);
+
+    //===========================微信小程序接口分割线===================================//
+    List<SimpleGroupon4Wx> selectGrouponList4Wx(Integer limit);
+
 }

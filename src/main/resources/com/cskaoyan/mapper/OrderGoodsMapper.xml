@@ -134,7 +134,7 @@
         </if>
         'true' as QUERYID,
         <include refid="Base_Column_List"/>
-        from cskaoyan_mall_order_goods
+        from cskaoyanmall_order_goods
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -145,22 +145,22 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from cskaoyan_mall_order_goods
+        from cskaoyanmall_order_goods
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete
-        from cskaoyan_mall_order_goods
+        from cskaoyanmall_order_goods
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <delete id="deleteByExample" parameterType="com.cskaoyan.bean.mall.OrderGoodsExample">
-        delete from cskaoyan_mall_order_goods
+        delete from cskaoyanmall_order_goods
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
     <insert id="insert" parameterType="com.cskaoyan.bean.mall.OrderGoods">
-        insert into cskaoyan_mall_order_goods (id, order_id, goods_id,
+        insert into cskaoyanmall_order_goods (id, order_id, goods_id,
                                                goods_name, goods_sn, product_id,
                                                number, price, specifications,
                                                pic_url, comment, add_time,
@@ -173,7 +173,7 @@
                 #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT})
     </insert>
     <insert id="insertSelective" parameterType="com.cskaoyan.bean.mall.OrderGoods">
-        insert into cskaoyan_mall_order_goods
+        insert into cskaoyanmall_order_goods
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -264,7 +264,7 @@
         </trim>
     </insert>
     <select id="countByExample" parameterType="com.cskaoyan.bean.mall.OrderGoodsExample" resultType="java.lang.Long">
-        select count(*) from cskaoyan_mall_order_goods
+        select count(*) from cskaoyanmall_order_goods
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -274,12 +274,12 @@
                count(distinct goods_id) as products,
                sum(number * price)      as amount,
                update_time              as day
-        from cskaoyan_mall_order_goods
+        from cskaoyanmall_order_goods
         where deleted = 0
         group by update_time
     </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update cskaoyan_mall_order_goods
+        update cskaoyanmall_order_goods
         <set>
             <if test="record.id != null">
                 id = #{record.id,jdbcType=INTEGER},
@@ -330,7 +330,7 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update cskaoyan_mall_order_goods
+        update cskaoyanmall_order_goods
         set id = #{record.id,jdbcType=INTEGER},
         order_id = #{record.orderId,jdbcType=INTEGER},
         goods_id = #{record.goodsId,jdbcType=INTEGER},
@@ -351,7 +351,7 @@
         </if>
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.mall.OrderGoods">
-        update cskaoyan_mall_order_goods
+        update cskaoyanmall_order_goods
         <set>
             <if test="orderId != null">
                 order_id = #{orderId,jdbcType=INTEGER},
@@ -397,7 +397,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.mall.OrderGoods">
-        update cskaoyan_mall_order_goods
+        update cskaoyanmall_order_goods
         set order_id       = #{orderId,jdbcType=INTEGER},
             goods_id       = #{goodsId,jdbcType=INTEGER},
             goods_name     = #{goodsName,jdbcType=VARCHAR},

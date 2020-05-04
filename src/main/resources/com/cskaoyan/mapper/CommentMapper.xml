@@ -83,7 +83,7 @@
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from cskaoyan_mall_comment
+    from cskaoyanmall_comment
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -94,21 +94,21 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from cskaoyan_mall_comment
+    from cskaoyanmall_comment
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from cskaoyan_mall_comment
+    delete from cskaoyanmall_comment
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.cskaoyan.bean.goods.CommentExample">
-    delete from cskaoyan_mall_comment
+    delete from cskaoyanmall_comment
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.cskaoyan.bean.goods.Comment">
-    insert into cskaoyan_mall_comment (id, value_id, type, 
+    insert into cskaoyanmall_comment (id, value_id, type,
       content, user_id, has_picture, 
       pic_urls, star, add_time, 
       update_time, deleted)
@@ -118,7 +118,7 @@
       #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.cskaoyan.bean.goods.Comment">
-    insert into cskaoyan_mall_comment
+    insert into cskaoyanmall_comment
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -191,13 +191,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.cskaoyan.bean.goods.CommentExample" resultType="java.lang.Long">
-    select count(*) from cskaoyan_mall_comment
+    select count(*) from cskaoyanmall_comment
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update cskaoyan_mall_comment
+    update cskaoyanmall_comment
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
@@ -238,7 +238,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update cskaoyan_mall_comment
+    update cskaoyanmall_comment
     set id = #{record.id,jdbcType=INTEGER},
       value_id = #{record.valueId,jdbcType=INTEGER},
       type = #{record.type,jdbcType=TINYINT},
@@ -255,7 +255,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.goods.Comment">
-    update cskaoyan_mall_comment
+    update cskaoyanmall_comment
     <set>
       <if test="valueId != null">
         value_id = #{valueId,jdbcType=INTEGER},
@@ -291,7 +291,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.goods.Comment">
-    update cskaoyan_mall_comment
+    update cskaoyanmall_comment
     set value_id = #{valueId,jdbcType=INTEGER},
       type = #{type,jdbcType=TINYINT},
       content = #{content,jdbcType=VARCHAR},

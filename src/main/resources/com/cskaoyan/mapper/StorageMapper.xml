@@ -82,7 +82,7 @@
         </if>
         'true' as QUERYID,
         <include refid="Base_Column_List"/>
-        from cskaoyan_mall_storage
+        from cskaoyanmall_storage
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -93,22 +93,22 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from cskaoyan_mall_storage
+        from cskaoyanmall_storage
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete
-        from cskaoyan_mall_storage
+        from cskaoyanmall_storage
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <delete id="deleteByExample" parameterType="com.cskaoyan.bean.system.StorageExample">
-        delete from cskaoyan_mall_storage
+        delete from cskaoyanmall_storage
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
     <insert id="insert" parameterType="com.cskaoyan.bean.system.Storage" useGeneratedKeys="true" keyProperty="id">
-        insert into cskaoyan_mall_storage (id, `key`, name,
+        insert into cskaoyanmall_storage (id, `key`, name,
                                            type, size, url, add_time,
                                            update_time, deleted)
         values (#{id,jdbcType=INTEGER}, #{key,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
@@ -117,7 +117,7 @@
     </insert>
     <insert id="insertSelective" parameterType="com.cskaoyan.bean.system.Storage" useGeneratedKeys="true"
             keyProperty="id">
-        insert into cskaoyan_mall_storage
+        insert into cskaoyanmall_storage
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -178,13 +178,13 @@
         </trim>
     </insert>
     <select id="countByExample" parameterType="com.cskaoyan.bean.system.StorageExample" resultType="java.lang.Long">
-        select count(*) from cskaoyan_mall_storage
+        select count(*) from cskaoyanmall_storage
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update cskaoyan_mall_storage
+        update cskaoyanmall_storage
         <set>
             <if test="record.id != null">
                 id = #{record.id,jdbcType=INTEGER},
@@ -219,7 +219,7 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update cskaoyan_mall_storage
+        update cskaoyanmall_storage
         set id = #{record.id,jdbcType=INTEGER},
         `key` = #{record.key,jdbcType=VARCHAR},
         name = #{record.name,jdbcType=VARCHAR},
@@ -234,7 +234,7 @@
         </if>
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.system.Storage">
-        update cskaoyan_mall_storage
+        update cskaoyanmall_storage
         <set>
             <if test="key != null">
                 `key` = #{key,jdbcType=VARCHAR},
@@ -264,7 +264,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.system.Storage">
-        update cskaoyan_mall_storage
+        update cskaoyanmall_storage
         set `key`         = #{key,jdbcType=VARCHAR},
             name        = #{name,jdbcType=VARCHAR},
             type        = #{type,jdbcType=VARCHAR},

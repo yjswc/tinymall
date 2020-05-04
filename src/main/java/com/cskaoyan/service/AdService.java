@@ -17,4 +17,7 @@ public interface AdService {
     Integer createAd(Advertisement advertisement);
 
     Integer deleteAd(Advertisement advertisement);
+
+    //===========================小程序接口分割线==================================//
+    List<Advertisement> queryAdList4Wx();
 }

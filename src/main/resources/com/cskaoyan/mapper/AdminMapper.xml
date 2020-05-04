@@ -84,7 +84,7 @@
         </if>
         'true' as QUERYID,
         <include refid="Base_Column_List"/>
-        from cskaoyan_mall_admin
+        from cskaoyanmall_admin
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -95,22 +95,22 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from cskaoyan_mall_admin
+        from cskaoyanmall_admin
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete
-        from cskaoyan_mall_admin
+        from cskaoyanmall_admin
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <delete id="deleteByExample" parameterType="com.cskaoyan.bean.system.AdminExample">
-        delete from cskaoyan_mall_admin
+        delete from cskaoyanmall_admin
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
     <insert id="insert" parameterType="com.cskaoyan.bean.system.Admin">
-        insert into cskaoyan_mall_admin (id, username, password,
+        insert into cskaoyanmall_admin (id, username, password,
                                          last_login_ip, last_login_time, avatar,
                                          add_time, update_time, deleted,
                                          role_ids)
@@ -120,7 +120,7 @@
                 #{roleIds,jdbcType=VARCHAR})
     </insert>
     <insert id="insertSelective" parameterType="com.cskaoyan.bean.system.Admin">
-        insert into cskaoyan_mall_admin
+        insert into cskaoyanmall_admin
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -187,19 +187,19 @@
         </trim>
     </insert>
     <select id="countByExample" parameterType="com.cskaoyan.bean.system.AdminExample" resultType="java.lang.Long">
-        select count(*) from cskaoyan_mall_admin
+        select count(*) from cskaoyanmall_admin
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
     <select id="selectPasswordByUserName" resultType="java.lang.String">
         select password
-        from cskaoyan_mall_admin
+        from cskaoyanmall_admin
         where username = #{username}
           and deleted = 0
     </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update cskaoyan_mall_admin
+        update cskaoyanmall_admin
         <set>
             <if test="record.id != null">
                 id = #{record.id,jdbcType=INTEGER},
@@ -237,7 +237,7 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update cskaoyan_mall_admin
+        update cskaoyanmall_admin
         set id = #{record.id,jdbcType=INTEGER},
         username = #{record.username,jdbcType=VARCHAR},
         password = #{record.password,jdbcType=VARCHAR},
@@ -253,7 +253,7 @@
         </if>
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.system.Admin">
-        update cskaoyan_mall_admin
+        update cskaoyanmall_admin
         <set>
             <if test="username != null">
                 username = #{username,jdbcType=VARCHAR},
@@ -286,7 +286,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.system.Admin">
-        update cskaoyan_mall_admin
+        update cskaoyanmall_admin
         set username        = #{username,jdbcType=VARCHAR},
             password        = #{password,jdbcType=VARCHAR},
             last_login_ip   = #{lastLoginIp,jdbcType=VARCHAR},

@@ -23,6 +23,16 @@
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
         <result column="deleted" jdbcType="BIT" property="deleted"/>
     </resultMap>
+    <!--微信小程序所需优惠券resultmap-->
+    <resultMap id="SimpleResultMap4Wx" type="com.cskaoyan.bean.promotion.Coupon">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="desc" jdbcType="VARCHAR" property="desc"/>
+        <result column="tag" jdbcType="VARCHAR" property="tag"/>
+        <result column="discount" jdbcType="DECIMAL" property="discount"/>
+        <result column="min" jdbcType="DECIMAL" property="min"/>
+        <result column="days" jdbcType="SMALLINT" property="days"/>
+    </resultMap>
     <sql id="Example_Where_Clause">
         <where>
             <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -87,6 +97,9 @@
         id, name, `desc`, tag, total, discount, min, `limit`, type, status, goods_type, goods_value,
     code, time_type, days, start_time, end_time, add_time, update_time, deleted
     </sql>
+    <sql id="Base_Column_List4Wx">
+        id, name, `desc`, tag,discount, min, days
+    </sql>
     <select id="selectByExample" parameterType="com.cskaoyan.bean.promotion.CouponExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
@@ -94,7 +107,7 @@
         </if>
         'true' as QUERYID,
         <include refid="Base_Column_List"/>
-        from cskaoyan_mall_coupon
+        from cskaoyanmall_coupon
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -105,22 +118,22 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from cskaoyan_mall_coupon
+        from cskaoyanmall_coupon
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete
-        from cskaoyan_mall_coupon
+        from cskaoyanmall_coupon
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <delete id="deleteByExample" parameterType="com.cskaoyan.bean.promotion.CouponExample">
-        delete from cskaoyan_mall_coupon
+        delete from cskaoyanmall_coupon
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
     <insert id="insert" parameterType="com.cskaoyan.bean.promotion.Coupon">
-        insert into cskaoyan_mall_coupon (id, name, `desc`,
+        insert into cskaoyanmall_coupon (id, name, `desc`,
                                           tag, total, discount,
                                           min, `limit`, type,
                                           status, goods_type, goods_value,
@@ -136,7 +149,7 @@
                 #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT})
     </insert>
     <insert id="insertSelective" parameterType="com.cskaoyan.bean.promotion.Coupon">
-        insert into cskaoyan_mall_coupon
+        insert into cskaoyanmall_coupon
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -263,13 +276,18 @@
         </trim>
     </insert>
     <select id="countByExample" parameterType="com.cskaoyan.bean.promotion.CouponExample" resultType="java.lang.Long">
-        select count(*) from cskaoyan_mall_coupon
+        select count(*) from cskaoyanmall_coupon
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
+    <select id="selectCouponList4Wx" resultMap="SimpleResultMap4Wx">
+        select
+        <include refid="Base_Column_List4Wx"/>
+        from cskaoyanmall_coupon where deleted = 0
+    </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update cskaoyan_mall_coupon
+        update cskaoyanmall_coupon
         <set>
             <if test="record.id != null">
                 id = #{record.id,jdbcType=INTEGER},
@@ -337,7 +355,7 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update cskaoyan_mall_coupon
+        update cskaoyanmall_coupon
         set id = #{record.id,jdbcType=INTEGER},
         name = #{record.name,jdbcType=VARCHAR},
         `desc` = #{record.desc,jdbcType=VARCHAR},
@@ -363,7 +381,7 @@
         </if>
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.promotion.Coupon">
-        update cskaoyan_mall_coupon
+        update cskaoyanmall_coupon
         <set>
             <if test="name != null">
                 name = #{name,jdbcType=VARCHAR},
@@ -426,14 +444,14 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.promotion.Coupon">
-        update cskaoyan_mall_coupon
+        update cskaoyanmall_coupon
         set name        = #{name,jdbcType=VARCHAR},
-            `desc`        = #{desc,jdbcType=VARCHAR},
+            `desc`      = #{desc,jdbcType=VARCHAR},
             tag         = #{tag,jdbcType=VARCHAR},
             total       = #{total,jdbcType=INTEGER},
             discount    = #{discount,jdbcType=DECIMAL},
             min         = #{min,jdbcType=DECIMAL},
-            `limit`       = #{limit,jdbcType=SMALLINT},
+            `limit`     = #{limit,jdbcType=SMALLINT},
             type        = #{type,jdbcType=SMALLINT},
             status      = #{status,jdbcType=SMALLINT},
             goods_type  = #{goodsType,jdbcType=SMALLINT},

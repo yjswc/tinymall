@@ -32,7 +32,7 @@ public class TopicServiceImpl implements TopicService {
         criteria.andDeletedEqualTo(false);
         return topicMapper.selectByExampleWithBLOBs(example);
     }
-    
+
     @Override
     public Integer updateTopic(Topic topic) {
         Date date = new Date();
@@ -54,6 +54,13 @@ public class TopicServiceImpl implements TopicService {
         topic.setUpdateTime(date);
         topic.setDeleted(true);
         return topicMapper.updateByPrimaryKeySelective(topic);
+    }
+
+    //===========================微信小程序分割线============================//
+
+    @Override
+    public List<Topic> queryTopicList4Wx() {
+        return topicMapper.selectTopicList4Wx(6);
     }
 
 }

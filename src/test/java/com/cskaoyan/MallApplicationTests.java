@@ -7,10 +7,7 @@ import com.cskaoyan.bean.user.Collect;
 import com.cskaoyan.bean.user.SearchHistory;
 import com.cskaoyan.bean.user.User;
 import com.cskaoyan.mapper.*;
-import com.cskaoyan.service.ConfigService;
-import com.cskaoyan.service.GoodsService;
-import com.cskaoyan.service.MallService;
-import com.cskaoyan.service.UserService;
+import com.cskaoyan.service.*;
 import com.cskaoyan.utils.MD5Utils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,7 +29,7 @@ class MallApplicationTests {
     @Autowired
     UserService userService;
     @Autowired
-    MallService mallService;
+    RegionService mallService;
     @Autowired
     CategoryMapper categoryMapper;
     @Autowired
@@ -116,7 +113,7 @@ class MallApplicationTests {
     @Test
     public void testMD5() throws JsonProcessingException {
         String username = "admin123";
-        String md5 = MD5Utils.getMd5(username, username);
+        String md5 = MD5Utils.getMd5("123");
         System.out.println(md5);
     }
 
@@ -130,5 +127,36 @@ class MallApplicationTests {
         //List<Config> mall = configMapper.selectSimpleConfig("\'%mall%\'");
         HashMap<String, String> config = configService.getConfig("mall");
         System.out.println(config);
+    }
+
+    @Autowired
+    CouponMapper couponMapper;
+
+    @Autowired
+    Groupon_RulesMapper groupon_rulesMapper;
+    @Autowired
+    AdvertisementMapper advertisementMapper;
+    @Autowired
+    BrandMapper brandMapper;
+    @Autowired
+    TopicMapper topicMapper;
+    @Test
+    public void testHomeService() throws JsonProcessingException {
+        //List<Goods> newGoodsList = goodsMapper.selectGoodsList4Wx(true, null);
+        //List<Goods> hotGoodsList = goodsMapper.selectGoodsList4Wx(null, true);
+        //List<Coupon> couponList = couponMapper.selectCouponList4Wx();
+        //List<Category> channel = categoryMapper.selectParentCategoryList4Wx();
+        //List<SimpleGroupon4Wx> grouponList = groupon_rulesMapper.selectGrouponList4Wx();
+        ////banner的显示
+        //AdvertisementExample example = new AdvertisementExample();
+        //example.createCriteria().andDeletedEqualTo(false);
+        //List<Advertisement> banner = advertisementMapper.selectByExample(example);
+        ////brandList
+        //List<Brand> brandList = brandMapper.selectBrandList4Wx();
+        ////TopicList
+        //List<Topic> topicList = topicMapper.selectTopicList4Wx();
+        //List<Category4Wx> floorGoodsList = categoryMapper.selectFloorGoodsList4Wx();
+        ////
+        ObjectMapper mapper = new ObjectMapper();
     }
 }
